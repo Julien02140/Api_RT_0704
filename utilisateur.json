@@ -1,8 +1,18 @@
-{
+[
+    {
     "id": 1,
     "nom" : "Boutreaux",
     "prenom": "julien",
     "pseudo": "juju",
-    "age": "22",
+    "age": 22,
     "mot_de_passe": "juju02140"
-}
+    },
+    {
+    "id": 2,
+    "nom" : "Bou",
+    "prenom": "alexandre",
+    "pseudo": "al",
+    "age": 18,
+    "mot_de_passe": "alex023140"
+    }
+]
