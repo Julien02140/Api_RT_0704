@@ -5,14 +5,16 @@
     "prenom": "julien",
     "pseudo": "juju",
     "age": 22,
-    "mot_de_passe": "juju02140"
+    "mot_de_passe": "juju02140",
+    "email": "julien.boutreaux@orange.fr"
     },
     {
     "id": 2,
-    "nom" : "Bou",
+    "nom" : "Boutreaux",
     "prenom": "alexandre",
-    "pseudo": "al",
+    "pseudo": "Alex",
     "age": 18,
-    "mot_de_passe": "alex023140"
+    "mot_de_passe": "alex023140",
+    "email": "alexandre.boutreaux@orange.fr"
     }
 ]
