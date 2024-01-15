@@ -61,6 +61,16 @@ def films_populaires():
         films_populaires = json.load(fichier) 
     return jsonify(films_populaires)
 
+@app.route('/api/trouver_film/<int:film_id>')
+def trouver_film(film_id): #prends l'id du film en paramètre, retrouve le film dans films_populaires.json
+    with open('films_populaires.json', 'r', encoding='utf-8') as fichier:
+         films = json.load(fichier)
+         for film in films:
+             if film['id'] == film_id:
+                  print(film["title"])
+                  return jsonify(film)
+    return "erreur film non trouve"
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=int("5000"),debug=True)
     print("api start")
