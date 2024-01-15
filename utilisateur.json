@@ -1,20 +1,29 @@
 [
-    {
+  {
     "id": 1,
-    "nom" : "Boutreaux",
+    "nom": "Boutreaux",
     "prenom": "julien",
     "pseudo": "juju",
     "age": 22,
     "mot_de_passe": "juju02140",
     "email": "julien.boutreaux@orange.fr"
-    },
-    {
+  },
+  {
     "id": 2,
-    "nom" : "Boutreaux",
+    "nom": "Boutreaux",
     "prenom": "alexandre",
     "pseudo": "Alex",
     "age": 18,
     "mot_de_passe": "alex023140",
     "email": "alexandre.boutreaux@orange.fr"
-    }
+  },
+  {
+    "id": 3,
+    "nom": "Mauriaucourt",
+    "prenom": "Adrien",
+    "pseudo": "BBmetal",
+    "age": "24",
+    "mot_de_passe": "adrien02140",
+    "email": "adrien.mauriaucourt@orange.fr"
+  }
 ]

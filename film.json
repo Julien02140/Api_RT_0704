@@ -1,23 +1,48 @@
-{
-    "id" : 1,
-    "titre": "spider-man",
-    "annee": "2022",
-    "realisateur": "julien",
-    "genre" : "Action",
-    "acteur": [
-        {
-            "nom" : "Holand",
-            "prenom": "Thomas"
-        },
-        {
-            "nom": "Coleman",
-            "prenom": "Zendaya"
-        },
-        {
-            "nom": "Keaton",
-            "prenom": "Michael"
-        }
-    ],
-    "synopsis": "Spider-man se retrouve face au vautour"
+[
+    {
+        "id" : 1,
+        "titre": "spider-man",
+        "annee": "2022",
+        "realisateur": "julien",
+        "genre" : "Action",
+        "acteur": [
+            {
+                "nom" : "Holand",
+                "prenom": "Thomas"
+            },
+            {
+                "nom": "Coleman",
+                "prenom": "Zendaya"
+            },
+            {
+                "nom": "Keaton",
+                "prenom": "Michael"
+            }
+        ],
+        "synopsis": "Spider-man se retrouve face au vautour"
 
-}
+    },
+    {
+        "id" : 2,
+        "titre": "titanic",
+        "annee": "2004",
+        "realisateur": "julien",
+        "genre" : "Romance",
+        "acteur": [
+            {
+                "nom" : "TheRock",
+                "prenom": "Chad"
+            },
+            {
+                "nom": "Dupont",
+                "prenom": "Aymerick"
+            },
+            {
+                "nom": "Dupond",
+                "prenom": "Lucas"
+            }
+        ],
+        "synopsis": "Une histoire d'amour ruiné par un capitaine qui ne sait pas navigué"
+  
+    }
+]
