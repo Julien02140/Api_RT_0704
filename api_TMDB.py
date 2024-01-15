@@ -8,8 +8,19 @@ import requests
 
 app_TMDB = Flask(__name__)
 
+def trouver_film(id): #prends l'id du film en paramètre, retrouve le film dans films_populaires.json
+    with open('films_populaires.json', 'r', encoding='utf-8') as fichier:
+         films = json.load(fichier)
+         for film in films:
+             if film['id'] == id:
+                  print(film["title"])
+                  return 
+    return "erreur film non trouve"
+    
+
+
 def afficher_image():
-    base_url = "https://image.tmdb.org/t/p/w500"
+    base_url = "https://image.tmdb.org/t/p/w342"
     film = {
         "adult": False,
         "backdrop_path": "/f1AQhx6ZfGhPZFTVKgxG91PhEYc.jpg",
@@ -31,7 +42,9 @@ def afficher_image():
         "vote_count": 1123
     }
     image_url = base_url + film["backdrop_path"]
+    image_url2 = base_url + film["poster_path"]
     print("URL de l'image :", image_url)
+    print("URL de l'image 2 :", image_url2)
 
 
 def get_popular_movie():
@@ -54,5 +67,4 @@ def get_popular_movie():
         return None
 
 if __name__ == '__main__':
-    afficher_image()
-    
+    trouver_film(753342)

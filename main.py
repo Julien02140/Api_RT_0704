@@ -55,6 +55,12 @@ def register_user():
     
     return jsonify({"message":"Utilisateur ajouté"})
 
+@app.route('/api/films_populaires')
+def films_populaires():
+    with open('films_populaires.json', 'r', encoding='utf-8') as fichier:
+        films_populaires = json.load(fichier) 
+    return jsonify(films_populaires)
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=int("5000"),debug=True)
     print("api start")
