@@ -7,7 +7,48 @@ import requests
 #alors que get est utilisé pour lire, extraire des données
 
 app_TMDB = Flask(__name__)
+api_key_TMDB = "8770fea03d8b0d550c4b50be1656d5cb"
 
+#permet de recuperer des films dans l'api de TMDB, lorsqu'on envoie
+#une requête avec de grands résultats, l'api TMDB divise les films en
+#groupe de pages, j'en prends seulement 3 pour éviter d'avoir trop de films
+#dans mon film.json
+def get_film():
+    url = f"https://api.themoviedb.org/3/discover/movie?api_key={api_key_TMDB}&language=fr&page=1"
+    liste_films = []
+    for i in range(1,4):
+        params = {
+            'vote_average.gte': 7,
+            'vote_count.gte': 100,
+            'page': i #je recupere 3 pages de films
+        }
+        response = requests.get(url, params=params)
+        data = response.json()
+        if response.status_code == 200:
+            films = data['results']
+            liste_films.append(films)
+            print("films recuperer")
+        else:
+            print(f"Erreur {response.status_code}: Impossible de récupérer la liste des films.")
+        
+    with open('films.json', 'w', encoding='utf-8') as json_file:
+        json.dump(liste_films, json_file, ensure_ascii=False, indent=4)
+        print("Les données ont été enregistrées dans films.json")
+
+
+def genre_film():
+    url = f"https://api.themoviedb.org/3/genre/movie/list?api_key={api_key_TMDB}"
+    response = requests.get(url)
+    data = response.json()
+    if response.status_code == 200:
+        genres = data['genres']
+        with open('genres.json', 'w', encoding='utf-8') as fichier:
+            json.dump(genres, fichier, indent=2)
+    else:
+        print(f"Erreur {response.status_code}: Impossible de récupérer la liste des genres.")
+
+
+   
 def trouver_film(id): #prends l'id du film en paramètre, retrouve le film dans films_populaires.json
     with open('films_populaires.json', 'r', encoding='utf-8') as fichier:
          films = json.load(fichier)
@@ -46,7 +87,7 @@ def afficher_image():
     print("URL de l'image :", image_url)
     print("URL de l'image 2 :", image_url2)
 
-
+#renvoie les films populaires du moment à afficher sur la page home
 def get_popular_movie():
     api_key = "8770fea03d8b0d550c4b50be1656d5cb"
     requete = "https://api.themoviedb.org/3/discover/movie?api_key=8770fea03d8b0d550c4b50be1656d5cb&sort_by=popularity.desc"
@@ -67,4 +108,5 @@ def get_popular_movie():
         return None
 
 if __name__ == '__main__':
-    trouver_film(753342)
+    
+    get_film()

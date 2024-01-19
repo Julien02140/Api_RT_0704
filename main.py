@@ -5,15 +5,34 @@ import random
 
 app = Flask(__name__)
 serveur_url = "http://localhost:3000/verif_login"
-#Je charge les données de mon fichier utilisateur.json
+#Je charge les données de mes fichiers json
+with open('films.json', 'r+', encoding='utf-8') as json_file:
+    films = json.load(json_file)
+
+with open('films_populaires.json', 'r+', encoding='utf-8') as json_file:
+    films_populaires = json.load(json_file)
+
+with open('genres.json', 'r+', encoding='utf-8') as json_file:
+    genres = json.load(json_file)
+
+with open('utilisateur.json', 'r+', encoding='utf-8') as json_file:
+    utilisateurs = json.load(json_file)
+
+with open('videotheque.json', 'r+', encoding='utf-8') as json_file:
+    videotheque = json.load(json_file)
+
 def charger_user():
-    with open('utilisateur.json', 'r') as file:
+    with open('utilisateur.json', 'r+') as file:
         user_data = json.load(file)
     return user_data
 
 @app.before_request
 def before_request():
     g.next_id = 3 #Le prochain utilisateur inscrit aura cet id
+
+@app.route('/api/recherche/<string:chaine>')
+def recherche(chaine):
+    return chaine
 
 #cette route vérifie si le user est dans la base de donnée
 @app.route('/api/verif_user', methods=['POST'])
@@ -57,18 +76,14 @@ def register_user():
 
 @app.route('/api/films_populaires')
 def films_populaires():
-    with open('films_populaires.json', 'r', encoding='utf-8') as fichier:
-        films_populaires = json.load(fichier) 
     return jsonify(films_populaires)
 
 @app.route('/api/trouver_film/<int:film_id>')
 def trouver_film(film_id): #prends l'id du film en paramètre, retrouve le film dans films_populaires.json
-    with open('films_populaires.json', 'r', encoding='utf-8') as fichier:
-         films = json.load(fichier)
-         for film in films:
-             if film['id'] == film_id:
-                  print(film["title"])
-                  return jsonify(film)
+    for film in films_populaires:
+        if film['id'] == film_id:
+            print(film["title"])
+            return jsonify(film)
     return "erreur film non trouve"
 
 if __name__ == '__main__':
