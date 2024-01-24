@@ -119,8 +119,13 @@ def trouver_film(film_id): #prends l'id du film en paramètre, retrouve le film 
 
 @app.route('/api/ajout_film/<int:user_id>/<int:film_id>')
 def ajout_film(user_id,film_id):
+    print("AJOUT D UN FILM")
     film = trouver_film(film_id)
     video = chercher_videotheque(user_id)
+    for film in video.get("liste_films"):
+        if film == film_id:
+            print("film deja dans la videothequ")
+            return jsonify({"message" : "Deja dans la videotheque"})
     print("AJOUT DU FILM ID", film_id)
     print(video)
     nouv_video = video.get("liste_films")
@@ -129,8 +134,28 @@ def ajout_film(user_id,film_id):
     with open('videotheque.json', 'r+', encoding='utf-8') as json_file:
         json.dump(videotheque, json_file, ensure_ascii=False, indent=4)
     
-    return "ok"
+    return jsonify({"message": "film ajouté"})
     
+@app.route('/api/supprimer_film/<int:user_id>/<int:film_id>')
+def supprimer_film(user_id,film_id):
+    print("SUPPRIMER FILM DANS LA VIDEOTHEQUE, ID FILM :", film_id)
+    film = trouver_film(film_id)
+    for user in videotheque:
+        if user["id_utilisateur"] == user_id:
+            if film_id in user["liste_films"]:
+                user["liste_films"].remove(film_id)
+                print("film supprimé")
+                with open('videotheque.json', 'r+', encoding='utf-8') as json_file:
+                    json_file.seek(0)
+                    json.dump(videotheque, json_file, ensure_ascii=False, indent=4)
+                    json_file.truncate()
+                return jsonify({"message" : "film supprimé"})  
+            else:
+                #normalement impossible de tomber dans cette condition
+                print("l'id n'a pas été trouvé")
+                return jsonify({"message": "pas trouvé"})
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=int("5000"),debug=True)
     print("api start")
