@@ -34,6 +34,10 @@ def before_request():
 def recherche(chaine):
     return chaine
 
+@app.route('/api/ma_videotheque/<int:id>') #id de l'utilisateur
+def ma_videotheque(id):
+    return "ok"
+    
 #cette route vérifie si le user est dans la base de donnée
 @app.route('/api/verif_user', methods=['POST'])
 def verif_user():
@@ -75,7 +79,7 @@ def register_user():
     return jsonify({"message":"Utilisateur ajouté"})
 
 @app.route('/api/films_populaires')
-def films_populaires():
+def get_films_populaires():
     return jsonify(films_populaires)
 
 @app.route('/api/trouver_film/<int:film_id>')
