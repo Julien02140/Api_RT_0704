@@ -25,15 +25,17 @@ def get_film():
         response = requests.get(url, params=params)
         data = response.json()
         if response.status_code == 200:
-            films = data['results']
-            liste_films.append(films)
-            print("films recuperer")
+            films = data.get('results', [])
+            if films:
+                with open('films.json', 'w', encoding='utf-8') as fichier:
+                    json.dump(films, fichier, indent=2)
+                    print("ecriture sur films.json")
+            else:
+                print("Échec de la récupération des films.")
         else:
             print(f"Erreur {response.status_code}: Impossible de récupérer la liste des films.")
-        
-    with open('films.json', 'w', encoding='utf-8') as json_file:
-        json.dump(liste_films, json_file, ensure_ascii=False, indent=4)
-        print("Les données ont été enregistrées dans films.json")
+
+    print("Les données ont été enregistrées dans films.json")
 
 
 def genre_film():
@@ -108,5 +110,5 @@ def get_popular_movie():
         return None
 
 if __name__ == '__main__':
-    
     get_film()
+    get_popular_movie()

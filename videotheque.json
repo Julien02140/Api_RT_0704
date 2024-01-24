@@ -1,4 +1,20 @@
-{
-    "id_utilisateur": 1,
-    "liste_films" : [1,2]
-}
+[
+    {
+        "id_utilisateur": 1,
+        "liste_films": [
+            1,
+            2
+        ]
+    },
+    {
+        "id_utilisateur": 3,
+        "liste_films": [
+            678512,
+            299534,
+            609681,
+            787699,
+            572802,
+            955916
+        ]
+    }
+]

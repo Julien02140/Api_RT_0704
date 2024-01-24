@@ -29,14 +29,32 @@ def charger_user():
 @app.before_request
 def before_request():
     g.next_id = 3 #Le prochain utilisateur inscrit aura cet id
+#A change
 
 @app.route('/api/recherche/<string:chaine>')
 def recherche(chaine):
     return chaine
 
+def chercher_videotheque(user_id):
+    for video in videotheque:
+        id_video = video.get("id_utilisateur")   
+        print("id video :",id_video) 
+        if id_video == user_id:
+            print("videotheque trouve",video)
+            return video
+    return "erreur, ne trouve pas la videotheque du user"  
+
 @app.route('/api/ma_videotheque/<int:id>') #id de l'utilisateur
 def ma_videotheque(id):
-    return "ok"
+    print("dans la fonction videotheque ")
+    for video in videotheque:
+        id_video = video.get("id_utilisateur")
+        print("id video :",id_video)
+        if id_video == id:
+            liste_films = video.get("liste_films")
+            print(liste_films)
+            return jsonify({"liste_films": liste_films})
+    return "pas trouve id utilisateur"
     
 #cette route vérifie si le user est dans la base de donnée
 @app.route('/api/verif_user', methods=['POST'])
@@ -52,7 +70,8 @@ def verif_user():
         print(utilisateur.get("pseudo"))
         print(utilisateur.get("mot_de_passe"))
         if utilisateur.get("pseudo") == pseudo_user and utilisateur.get("mot_de_passe") == password_user:
-            return jsonify({"message": "Connexion OK"})
+            id = utilisateur.get("id")
+            return jsonify({"message": "Connexion OK","id": id})
     #si on arrive la, alors aucun utilisateur ne correspond
     return jsonify({"message": "NON"})
 
@@ -84,12 +103,34 @@ def get_films_populaires():
 
 @app.route('/api/trouver_film/<int:film_id>')
 def trouver_film(film_id): #prends l'id du film en paramètre, retrouve le film dans films_populaires.json
+    # Affiche tous les IDs dans la liste de films
+    print("voici l'id du film",film_id)
+    for film in films:
+        if film['id'] == film_id:
+            print(film["title"])
+            return jsonify(film)
     for film in films_populaires:
         if film['id'] == film_id:
             print(film["title"])
             return jsonify(film)
+        
+    print("film pas trouve")
     return "erreur film non trouve"
 
+@app.route('/api/ajout_film/<int:user_id>/<int:film_id>')
+def ajout_film(user_id,film_id):
+    film = trouver_film(film_id)
+    video = chercher_videotheque(user_id)
+    print("AJOUT DU FILM ID", film_id)
+    print(video)
+    nouv_video = video.get("liste_films")
+    nouv_video.append(film_id)
+    print("nouv_video ajouter")
+    with open('videotheque.json', 'r+', encoding='utf-8') as json_file:
+        json.dump(videotheque, json_file, ensure_ascii=False, indent=4)
+    
+    return "ok"
+    
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=int("5000"),debug=True)
     print("api start")

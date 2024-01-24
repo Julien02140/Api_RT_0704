@@ -1,6 +1,85 @@
 [
   {
     "adult": false,
+    "backdrop_path": "/criPrxkTggCra1jch49jsiSeXo1.jpg",
+    "genre_ids": [
+      878,
+      12,
+      28
+    ],
+    "id": 609681,
+    "original_language": "en",
+    "original_title": "The Marvels",
+    "overview": "Carol Danvers, aka Captain Marvel, has reclaimed her identity from the tyrannical Kree and taken revenge on the Supreme Intelligence. But unintended consequences see Carol shouldering the burden of a destabilized universe. When her duties send her to an anomalous wormhole linked to a Kree revolutionary, her powers become entangled with that of Jersey City super-fan Kamala Khan, aka Ms. Marvel, and Carol\u2019s estranged niece, now S.A.B.E.R. astronaut Captain Monica Rambeau. Together, this unlikely trio must team up and learn to work in concert to save the universe.",
+    "popularity": 2724.536,
+    "poster_path": "/9GBhzXMFjgcZ3FdR9w3bUMMTps5.jpg",
+    "release_date": "2023-11-08",
+    "title": "The Marvels",
+    "video": false,
+    "vote_average": 6.4,
+    "vote_count": 1165
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/bmlkLCjrIWnnZzdAQ4uNPG9JFdj.jpg",
+    "genre_ids": [
+      35,
+      10751,
+      14
+    ],
+    "id": 787699,
+    "original_language": "en",
+    "original_title": "Wonka",
+    "overview": "Willy Wonka \u2013 chock-full of ideas and determined to change the world one delectable bite at a time \u2013 is proof that the best things in life begin with a dream, and if you\u2019re lucky enough to meet Willy Wonka, anything is possible.",
+    "popularity": 2301.226,
+    "poster_path": "/qhb1qOilapbapxWQn9jtRCMwXJF.jpg",
+    "release_date": "2023-12-06",
+    "title": "Wonka",
+    "video": false,
+    "vote_average": 7.2,
+    "vote_count": 1291
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/jXJxMcVoEuXzym3vFnjqDW4ifo6.jpg",
+    "genre_ids": [
+      28,
+      12,
+      14
+    ],
+    "id": 572802,
+    "original_language": "en",
+    "original_title": "Aquaman and the Lost Kingdom",
+    "overview": "Black Manta, still driven by the need to avenge his father's death and wielding the power of the mythic Black Trident, will stop at nothing to take Aquaman down once and for all. To defeat him, Aquaman must turn to his imprisoned brother Orm, the former King of Atlantis, to forge an unlikely alliance in order to save the world from irreversible destruction.",
+    "popularity": 1529.779,
+    "poster_path": "/7lTnXOy0iNtBAdRP3TZvaKJ77F6.jpg",
+    "release_date": "2023-12-20",
+    "title": "Aquaman and the Lost Kingdom",
+    "video": false,
+    "vote_average": 6.6,
+    "vote_count": 600
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/rz8GGX5Id2hCW1KzAIY4xwbQw1w.jpg",
+    "genre_ids": [
+      35,
+      80
+    ],
+    "id": 955916,
+    "original_language": "en",
+    "original_title": "Lift",
+    "overview": "An international heist crew, led by Cyrus Whitaker, race to lift $500 million in gold from a passenger plane at 40,000 feet.",
+    "popularity": 1351.393,
+    "poster_path": "/gma8o1jWa6m0K1iJ9TzHIiFyTtI.jpg",
+    "release_date": "2024-01-10",
+    "title": "Lift",
+    "video": false,
+    "vote_average": 6.4,
+    "vote_count": 464
+  },
+  {
+    "adult": false,
     "backdrop_path": "/f1AQhx6ZfGhPZFTVKgxG91PhEYc.jpg",
     "genre_ids": [
       36,
@@ -11,12 +90,308 @@
     "original_language": "en",
     "original_title": "Napoleon",
     "overview": "An epic that details the checkered rise and fall of French Emperor Napoleon Bonaparte and his relentless journey to power through the prism of his addictive, volatile relationship with his wife, Josephine.",
-    "popularity": 2998.164,
+    "popularity": 1232.329,
     "poster_path": "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg",
     "release_date": "2023-11-22",
     "title": "Napoleon",
     "video": false,
     "vote_average": 6.5,
-    "vote_count": 1123
+    "vote_count": 1372
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/vdpE5pjJVql5aD6pnzRqlFmgxXf.jpg",
+    "genre_ids": [
+      18,
+      36
+    ],
+    "id": 906126,
+    "original_language": "es",
+    "original_title": "La sociedad de la nieve",
+    "overview": "On October 13, 1972, Uruguayan Air Force Flight 571, chartered to take a rugby team to Chile, crashes into a glacier in the heart of the Andes.",
+    "popularity": 1115.761,
+    "poster_path": "/2e853FDVSIso600RqAMunPxiZjq.jpg",
+    "release_date": "2023-12-13",
+    "title": "Society of the Snow",
+    "video": false,
+    "vote_average": 8.1,
+    "vote_count": 1222
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/a0GM57AnJtNi7lMOCamniiyV10W.jpg",
+    "genre_ids": [
+      16,
+      12,
+      14
+    ],
+    "id": 508883,
+    "original_language": "ja",
+    "original_title": "\u541b\u305f\u3061\u306f\u3069\u3046\u751f\u304d\u308b\u304b",
+    "overview": "While the Second World War rages, the teenage Mahito, haunted by his mother's tragic death, is relocated from Tokyo to the serene rural home of his new stepmother Natsuko, a woman who bears a striking resemblance to the boy's mother. As he tries to adjust, this strange new world grows even stranger following the appearance of a persistent gray heron, who perplexes and bedevils Mahito, dubbing him the \"long-awaited one.\"",
+    "popularity": 694.544,
+    "poster_path": "/jDQPkgzerGophKRRn7MKm071vCU.jpg",
+    "release_date": "2023-07-14",
+    "title": "The Boy and the Heron",
+    "video": false,
+    "vote_average": 7.5,
+    "vote_count": 782
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/yl2GfeCaPoxChcGyM5p7vYp1CKS.jpg",
+    "genre_ids": [
+      28,
+      35,
+      10749
+    ],
+    "id": 848187,
+    "original_language": "en",
+    "original_title": "Role Play",
+    "overview": "Emma has a wonderful husband and two kids in the suburbs of New Jersey \u2013 she also has a secret life as an assassin for hire \u2013 a secret that her husband David discovers when the couple decide to spice up their marriage with a little role play.",
+    "popularity": 809.428,
+    "poster_path": "/7MhXiTmTl16LwXNPbWCmqxj7UxH.jpg",
+    "release_date": "2023-12-14",
+    "title": "Role Play",
+    "video": false,
+    "vote_average": 5.8,
+    "vote_count": 178
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/ruKNVJFViAyR4jguVboFXTskMOe.jpg",
+    "genre_ids": [
+      53,
+      28,
+      27
+    ],
+    "id": 1028703,
+    "original_language": "en",
+    "original_title": "The OctoGames",
+    "overview": "8 contestants compete in 8 deadly, classic children's games. They seek fame beyond their wildest dreams, competing for the chance to take over the YouTube channel of the famous yet elusive masked YouTuber known only as \"JaxPro\".",
+    "popularity": 742.985,
+    "poster_path": "/qGz5rffXhegQH5PGUDiObqoOt06.jpg",
+    "release_date": "2022-10-07",
+    "title": "The OctoGames",
+    "video": false,
+    "vote_average": 4.3,
+    "vote_count": 24
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/lU1x6KXi2tvBPSIQxtVP6rmKEcw.jpg",
+    "genre_ids": [
+      28,
+      53
+    ],
+    "id": 1214314,
+    "original_language": "en",
+    "original_title": "One More Shot",
+    "overview": "Following the attack on the black site in Poland, Navy SEAL Jake Harris is ordered to escort terrorist suspect Amin Mansur to Washington D.C. for interrogation. Before the prisoner transfer process is complete, though, the airport is attacked by a group of heavily armed, well-trained mercenaries.",
+    "popularity": 536.253,
+    "poster_path": "/nQ1BQg4yMdlYSHvHZgwladzy7EF.jpg",
+    "release_date": "2024-01-12",
+    "title": "One More Shot",
+    "video": false,
+    "vote_average": 6.7,
+    "vote_count": 66
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/dvNrgldueQciabkYmlCnyhmaPoO.jpg",
+    "genre_ids": [
+      28,
+      9648,
+      53,
+      27
+    ],
+    "id": 899445,
+    "original_language": "en",
+    "original_title": "Deep Fear",
+    "overview": "A solo trip aboard a yacht takes a terrifying turn when a woman encounters three drug traffickers clinging to the shattered remains of a boat. They soon force her to dive into shark-infested waters to retrieve kilos of cocaine from the sunken wreck.",
+    "popularity": 633.259,
+    "poster_path": "/ruujFw7J0Nd3BSjbN3QODym82Qs.jpg",
+    "release_date": "2023-10-18",
+    "title": "Deep Fear",
+    "video": false,
+    "vote_average": 5.3,
+    "vote_count": 75
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/oQ429AcD85ttxvOxAaYpETnAsW0.jpg",
+    "genre_ids": [
+      28,
+      10752
+    ],
+    "id": 918692,
+    "original_language": "ru",
+    "original_title": "\u0413\u0440\u0430\u043d\u0438\u0442",
+    "overview": "Mozambique requests from Russia is being helped in the fight against militants of the \"Islamic State\" and a special group led by a commander with the call sign Granit is coming to the country.",
+    "popularity": 616.646,
+    "poster_path": "/zLJn4U2qlWIzlFP5SsyFJUDQjfs.jpg",
+    "release_date": "2021-12-29",
+    "title": "Granit",
+    "video": false,
+    "vote_average": 6,
+    "vote_count": 8
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/2KGxQFV9Wp1MshPBf8BuqWUgVAz.jpg",
+    "genre_ids": [
+      16,
+      12,
+      35,
+      10751,
+      28
+    ],
+    "id": 940551,
+    "original_language": "en",
+    "original_title": "Migration",
+    "overview": "After a migrating duck family alights on their pond with thrilling tales of far-flung places, the Mallard family embarks on a family road trip, from New England, to New York City, to tropical Jamaica.",
+    "popularity": 603.494,
+    "poster_path": "/6UuWISO0uMcmj30QpTqC0Ycb33G.jpg",
+    "release_date": "2023-12-06",
+    "title": "Migration",
+    "video": false,
+    "vote_average": 7.5,
+    "vote_count": 127
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
+    "genre_ids": [
+      18,
+      36
+    ],
+    "id": 872585,
+    "original_language": "en",
+    "original_title": "Oppenheimer",
+    "overview": "The story of J. Robert Oppenheimer's role in the development of the atomic bomb during World War II.",
+    "popularity": 594.106,
+    "poster_path": "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+    "release_date": "2023-07-19",
+    "title": "Oppenheimer",
+    "video": false,
+    "vote_average": 8.1,
+    "vote_count": 6285
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/ejTG17sqAEEyIqZVpYhyw0PGUdT.jpg",
+    "genre_ids": [
+      878,
+      10749,
+      35
+    ],
+    "id": 792307,
+    "original_language": "en",
+    "original_title": "Poor Things",
+    "overview": "Brought back to life by an unorthodox scientist, a young woman runs off with a debauched lawyer on a whirlwind adventure across the continents. Free from the prejudices of her times, she grows steadfast in her purpose to stand for equality and liberation.",
+    "popularity": 491.877,
+    "poster_path": "/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg",
+    "release_date": "2023-11-21",
+    "title": "Poor Things",
+    "video": false,
+    "vote_average": 8,
+    "vote_count": 234
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/47SVqaO02doJ06tOmrjiWDkwU3T.jpg",
+    "genre_ids": [
+      28,
+      53
+    ],
+    "id": 927107,
+    "original_language": "en",
+    "original_title": "The Bricklayer",
+    "overview": "Someone is blackmailing the CIA by assassinating foreign journalists and making it look like the agency is responsible. As the world begins to unite against the U.S., the CIA must lure its most brilliant \u2013 and rebellious \u2013 operative out of retirement, forcing him to confront his checkered past while unraveling an international conspiracy.",
+    "popularity": 476.822,
+    "poster_path": "/pwOQ9lqLX1OgsJRSybS662wMcu8.jpg",
+    "release_date": "2023-12-14",
+    "title": "The Bricklayer",
+    "video": false,
+    "vote_average": 6.4,
+    "vote_count": 61
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/4MCKNAc6AbWjEsM2h9Xc29owo4z.jpg",
+    "genre_ids": [
+      28,
+      53
+    ],
+    "id": 866398,
+    "original_language": "en",
+    "original_title": "The Beekeeper",
+    "overview": "One man\u2019s campaign for vengeance takes on national stakes after he is revealed to be a former operative of a powerful and clandestine organization known as Beekeepers.",
+    "popularity": 466.017,
+    "poster_path": "/3DjlG6E3yglj6Zj7izALDAJXQLM.jpg",
+    "release_date": "2024-01-10",
+    "title": "The Beekeeper",
+    "video": false,
+    "vote_average": 7.5,
+    "vote_count": 167
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/r9oTasGQofvkQY5vlUXglneF64Z.jpg",
+    "genre_ids": [
+      28,
+      35
+    ],
+    "id": 1029575,
+    "original_language": "en",
+    "original_title": "The Family Plan",
+    "overview": "Dan Morgan is many things: a devoted husband, a loving father, a celebrated car salesman. He's also a former assassin. And when his past catches up to his present, he's forced to take his unsuspecting family on a road trip unlike any other.",
+    "popularity": 456.148,
+    "poster_path": "/a6syn9qcU4a54Lmi3JoIr1XvhFU.jpg",
+    "release_date": "2023-12-14",
+    "title": "The Family Plan",
+    "video": false,
+    "vote_average": 7.4,
+    "vote_count": 777
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/12kuwLnMvQJAdTQQ3zGE1dbfFDh.jpg",
+    "genre_ids": [
+      18,
+      878,
+      28
+    ],
+    "id": 695721,
+    "original_language": "en",
+    "original_title": "The Hunger Games: The Ballad of Songbirds & Snakes",
+    "overview": "64 years before he becomes the tyrannical president of Panem, Coriolanus Snow sees a chance for a change in fortunes when he mentors Lucy Gray Baird, the female tribute from District 12.",
+    "popularity": 452.675,
+    "poster_path": "/mBaXZ95R2OxueZhvQbcEWy2DqyO.jpg",
+    "release_date": "2023-11-15",
+    "title": "The Hunger Games: The Ballad of Songbirds & Snakes",
+    "video": false,
+    "vote_average": 7.2,
+    "vote_count": 1557
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/rVJfabCz1ViynQCEz54MRqdZig1.jpg",
+    "genre_ids": [
+      16,
+      878,
+      28
+    ],
+    "id": 1155089,
+    "original_language": "en",
+    "original_title": "Justice League: Crisis on Infinite Earths Part One",
+    "overview": "Death is coming. Worse than death: oblivion. Not just for our Earth, but for everyone, everywhere, in every universe! Against this ultimate destruction, the mysterious Monitor has gathered the greatest team of Super Heroes ever assembled. But what can the combined might of Superman, Wonder Woman, Batman, The Flash, Green Lantern and hundreds of Super Heroes from multiple Earths even do to save all of reality from an unstoppable antimatter armageddon?!",
+    "popularity": 451.574,
+    "poster_path": "/zR6C66EDklgTPLHRSmmMt5878MR.jpg",
+    "release_date": "2024-01-09",
+    "title": "Justice League: Crisis on Infinite Earths Part One",
+    "video": false,
+    "vote_average": 7.8,
+    "vote_count": 117
   }
 ]
