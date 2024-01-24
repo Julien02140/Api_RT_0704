@@ -154,6 +154,14 @@ def supprimer_film(user_id,film_id):
                 #normalement impossible de tomber dans cette condition
                 print("l'id n'a pas été trouvé")
                 return jsonify({"message": "pas trouvé"})
+            
+@app.route('/api/recherche_film/<string:mot>')
+def recherche_film(mot):
+    liste_films = []
+    for film in films:
+        if film["title"].lower().startswith(mot.lower()):
+            liste_films.append(film)
+    return jsonify({"liste_films" : liste_films})
 
 
 if __name__ == '__main__':
