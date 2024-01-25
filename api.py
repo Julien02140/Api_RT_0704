@@ -1,10 +1,13 @@
 from flask import Flask, jsonify, request,g
 import json
 import random
+import hashlib
 #installer request pour la method post
 
 app = Flask(__name__)
-serveur_url = "http://localhost:3000/verif_login"
+
+vidfeotheque = []
+
 #Je charge les données de mes fichiers json
 with open('films.json', 'r+', encoding='utf-8') as json_file:
     films = json.load(json_file)
@@ -15,21 +18,29 @@ with open('films_populaires.json', 'r+', encoding='utf-8') as json_file:
 with open('genres.json', 'r+', encoding='utf-8') as json_file:
     genres = json.load(json_file)
 
-with open('utilisateur.json', 'r+', encoding='utf-8') as json_file:
-    utilisateurs = json.load(json_file)
-
 with open('videotheque.json', 'r+', encoding='utf-8') as json_file:
     videotheque = json.load(json_file)
+
+with open('utilisateur.json', 'r+', encoding='utf-8') as json_file:
+    utilisateurs = json.load(json_file)
 
 def charger_user():
     with open('utilisateur.json', 'r+') as file:
         user_data = json.load(file)
     return user_data
 
-@app.before_request
-def before_request():
-    g.next_id = 3 #Le prochain utilisateur inscrit aura cet id
-#A change
+def creer_videotheque(user_id):
+    nouv_video = {
+
+        "id_utilisateur": user_id,
+        "liste_films": []
+    }
+    
+    videotheque.append(nouv_video)
+
+    with open('videotheque.json', 'r+', encoding='utf-8') as fichier:
+        json.dump(videotheque, fichier, indent=2)
+    
 
 @app.route('/api/recherche/<string:chaine>')
 def recherche(chaine):
@@ -59,7 +70,6 @@ def ma_videotheque(id):
 #cette route vérifie si le user est dans la base de donnée
 @app.route('/api/verif_user', methods=['POST'])
 def verif_user():
-    utilisateurs = charger_user()
     donnee = request.form
     print(donnee)
     #récuper les infos de la requête POST
@@ -69,7 +79,9 @@ def verif_user():
     for utilisateur in utilisateurs:
         print(utilisateur.get("pseudo"))
         print(utilisateur.get("mot_de_passe"))
-        if utilisateur.get("pseudo") == pseudo_user and utilisateur.get("mot_de_passe") == password_user:
+        password_chiffrer = hashlib.sha256(password_user.encode('utf-8')).hexdigest()
+        print("mot de passe : ",password_chiffrer)
+        if utilisateur.get("pseudo") == pseudo_user and password_chiffrer == utilisateur.get("mot_de_passe"):
             id = utilisateur.get("id")
             return jsonify({"message": "Connexion OK","id": id})
     #si on arrive la, alors aucun utilisateur ne correspond
@@ -77,23 +89,27 @@ def verif_user():
 
 @app.route('/api/register_user',methods=['POST'])
 def register_user():
-    dico_user = charger_user()
+    dernier_user = utilisateurs[-1]
+    next_id = dernier_user["id"] + 1
     donnee  = request.form
+    password = donnee.get("password")
+    password_chiffrer = hashlib.sha256(password.encode('utf-8')).hexdigest()
     new_user = {
-        "id": g.next_id,
+        "id": next_id,
         "nom" : donnee.get("lastname"),
         "prenom": donnee.get("firstname"),
         "pseudo": donnee.get("pseudo"),
         "age": donnee.get("age"),
-        "mot_de_passe": donnee.get("password"),
+        "mot_de_passe": password_chiffrer,
         "email": donnee.get("email")
     }
-    g.next_id = g.next_id + 1
-    dico_user.append(new_user) #ajoute au dico user le nouvel user
+    utilisateurs.append(new_user) #ajoute au dico user le nouvel user
 
     #ouvre le fichier utilisateur.json en écriture et écrit le contenu de dico_user
     with open('utilisateur.json', 'w') as fichier: 
-        json.dump(dico_user, fichier, indent=2)
+        json.dump(utilisateurs, fichier, indent=2)
+    
+    creer_videotheque(next_id)
     
     return jsonify({"message":"Utilisateur ajouté"})
 

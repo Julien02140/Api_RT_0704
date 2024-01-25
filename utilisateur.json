@@ -25,5 +25,14 @@
     "age": "24",
     "mot_de_passe": "adrien02140",
     "email": "adrien.mauriaucourt@orange.fr"
+  },
+  {
+    "id": 4,
+    "nom": "Dupont",
+    "prenom": "Luc",
+    "pseudo": "k3000",
+    "age": "29",
+    "mot_de_passe": "f43cd09d74d9bdca21d03e81dd4c7d6a314f53b903d86ee8f4e92ef4ab7b6891",
+    "email": "luc.dupont@orange.fr"
   }
 ]
