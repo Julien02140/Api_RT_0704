@@ -1,33 +1,40 @@
 from flask import Flask, jsonify, request,g
 import json
-import random
 import hashlib
+import os
 #installer request pour la method post
 
 app = Flask(__name__)
 
-vidfeotheque = []
+videotheque = []
+films = []
+films_populaires= []
+genres = []
+utilisateurs = []
 
-#Je charge les données de mes fichiers json
-with open('films.json', 'r+', encoding='utf-8') as json_file:
-    films = json.load(json_file)
+def lire_fichier_json(nom_fichier):
+    chemin_fichier = os.path.join(os.path.dirname(__file__), '..', 'data', nom_fichier)
 
-with open('films_populaires.json', 'r+', encoding='utf-8') as json_file:
-    films_populaires = json.load(json_file)
+    with open(chemin_fichier, 'r+') as fichier:
+        contenu_json = json.load(fichier)
 
-with open('genres.json', 'r+', encoding='utf-8') as json_file:
-    genres = json.load(json_file)
+    return contenu_json
 
-with open('videotheque.json', 'r+', encoding='utf-8') as json_file:
-    videotheque = json.load(json_file)
+def modifier_fichier_json(dico,nom_fichier):
+    chemin_fichier = os.path.join(os.path.dirname(__file__), '..', 'data', nom_fichier)
 
-with open('utilisateur.json', 'r+', encoding='utf-8') as json_file:
-    utilisateurs = json.load(json_file)
+    with open(chemin_fichier, 'r+') as fichier:
+        fichier.seek(0)
+        json.dump(dico, fichier, indent=2)
+        fichier.truncate()
+    return
 
-def charger_user():
-    with open('utilisateur.json', 'r+') as file:
-        user_data = json.load(file)
-    return user_data
+videotheque = lire_fichier_json('videotheque.json')
+films = lire_fichier_json('films.json')
+films_populaires = lire_fichier_json('films_populaires.json')
+genres = lire_fichier_json('genres.json')
+utilisateurs = lire_fichier_json('utilisateur.json')
+
 
 def creer_videotheque(user_id):
     nouv_video = {
@@ -38,11 +45,10 @@ def creer_videotheque(user_id):
     
     videotheque.append(nouv_video)
 
-    with open('videotheque.json', 'r+', encoding='utf-8') as fichier:
-        json.dump(videotheque, fichier, indent=2)
+    modifier_fichier_json(videotheque,"videotheque.json")
     
 
-@app.route('/api/recherche/<string:chaine>')
+@app.route('/recherche/<string:chaine>')
 def recherche(chaine):
     return chaine
 
@@ -55,7 +61,7 @@ def chercher_videotheque(user_id):
             return video
     return "erreur, ne trouve pas la videotheque du user"  
 
-@app.route('/api/ma_videotheque/<int:id>') #id de l'utilisateur
+@app.route('/ma_videotheque/<int:id>') #id de l'utilisateur
 def ma_videotheque(id):
     print("dans la fonction videotheque ")
     for video in videotheque:
@@ -68,7 +74,7 @@ def ma_videotheque(id):
     return "pas trouve id utilisateur"
     
 #cette route vérifie si le user est dans la base de donnée
-@app.route('/api/verif_user', methods=['POST'])
+@app.route('/verif_user', methods=['POST'])
 def verif_user():
     donnee = request.form
     print(donnee)
@@ -87,7 +93,7 @@ def verif_user():
     #si on arrive la, alors aucun utilisateur ne correspond
     return jsonify({"message": "NON"})
 
-@app.route('/api/register_user',methods=['POST'])
+@app.route('/register_user',methods=['POST'])
 def register_user():
     dernier_user = utilisateurs[-1]
     next_id = dernier_user["id"] + 1
@@ -105,19 +111,17 @@ def register_user():
     }
     utilisateurs.append(new_user) #ajoute au dico user le nouvel user
 
-    #ouvre le fichier utilisateur.json en écriture et écrit le contenu de dico_user
-    with open('utilisateur.json', 'w') as fichier: 
-        json.dump(utilisateurs, fichier, indent=2)
-    
+    modifier_fichier_json(utilisateurs,"utilisateur.json")
+
     creer_videotheque(next_id)
     
     return jsonify({"message":"Utilisateur ajouté"})
 
-@app.route('/api/films_populaires')
+@app.route('/films_populaires')
 def get_films_populaires():
     return jsonify(films_populaires)
 
-@app.route('/api/trouver_film/<int:film_id>')
+@app.route('/trouver_film/<int:film_id>')
 def trouver_film(film_id): #prends l'id du film en paramètre, retrouve le film dans films_populaires.json
     # Affiche tous les IDs dans la liste de films
     print("voici l'id du film",film_id)
@@ -133,7 +137,7 @@ def trouver_film(film_id): #prends l'id du film en paramètre, retrouve le film 
     print("film pas trouve")
     return "erreur film non trouve"
 
-@app.route('/api/ajout_film/<int:user_id>/<int:film_id>')
+@app.route('/ajout_film/<int:user_id>/<int:film_id>')
 def ajout_film(user_id,film_id):
     print("AJOUT D UN FILM")
     film = trouver_film(film_id)
@@ -147,12 +151,10 @@ def ajout_film(user_id,film_id):
     nouv_video = video.get("liste_films")
     nouv_video.append(film_id)
     print("nouv_video ajouter")
-    with open('videotheque.json', 'r+', encoding='utf-8') as json_file:
-        json.dump(videotheque, json_file, ensure_ascii=False, indent=4)
-    
+    modifier_fichier_json(videotheque,"videotheque.json")    
     return jsonify({"message": "film ajouté"})
     
-@app.route('/api/supprimer_film/<int:user_id>/<int:film_id>')
+@app.route('/supprimer_film/<int:user_id>/<int:film_id>')
 def supprimer_film(user_id,film_id):
     print("SUPPRIMER FILM DANS LA VIDEOTHEQUE, ID FILM :", film_id)
     film = trouver_film(film_id)
@@ -161,22 +163,20 @@ def supprimer_film(user_id,film_id):
             if film_id in user["liste_films"]:
                 user["liste_films"].remove(film_id)
                 print("film supprimé")
-                with open('videotheque.json', 'r+', encoding='utf-8') as json_file:
-                    json_file.seek(0)
-                    json.dump(videotheque, json_file, ensure_ascii=False, indent=4)
-                    json_file.truncate()
+                modifier_fichier_json(videotheque,"videotheque.json")
                 return jsonify({"message" : "film supprimé"})  
             else:
                 #normalement impossible de tomber dans cette condition
                 print("l'id n'a pas été trouvé")
                 return jsonify({"message": "pas trouvé"})
             
-@app.route('/api/recherche_film/<string:mot>')
+@app.route('/recherche_film/<string:mot>')
 def recherche_film(mot):
     liste_films = []
     for film in films:
         if film["title"].lower().startswith(mot.lower()):
             liste_films.append(film)
+    print("liste des films trouvés api :",liste_films)
     return jsonify({"liste_films" : liste_films})
 
 

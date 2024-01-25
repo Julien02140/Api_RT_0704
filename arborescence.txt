@@ -1,0 +1,15 @@
+Api_RT_0704/
+|__app/
+|    |--api.py
+|    |--api_TMDB.py
+|
+|--data/
+|   |--films_populaire.json
+|   |--films.json
+|   |--genres.json
+|   |--utilisateur.json
+|   |--videotheque.json
+|
+|--arborescence.txt
+|--requirements.txt
+└-- Dockerfile
