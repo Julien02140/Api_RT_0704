@@ -2,6 +2,7 @@ from flask import Flask, request,json,g
 import json
 import random
 import requests
+import os
 #installer request pour la method post
 #post est utilisé pour modifier ou ajouter à la base de donnée
 #alors que get est utilisé pour lire, extraire des données
@@ -13,6 +14,29 @@ api_key_TMDB = "8770fea03d8b0d550c4b50be1656d5cb"
 #une requête avec de grands résultats, l'api TMDB divise les films en
 #groupe de pages, j'en prends seulement 3 pour éviter d'avoir trop de films
 #dans mon film.json
+
+def lire_fichier_json(nom_fichier):
+    chemin_fichier = os.path.join(os.path.dirname(__file__), '..', 'data', nom_fichier)
+
+    with open(chemin_fichier, 'r+') as fichier:
+        contenu_json = json.load(fichier)
+
+    return contenu_json
+
+def modifier_fichier_json(dico,nom_fichier):
+    chemin_fichier = os.path.join(os.path.dirname(__file__), '..', 'data', nom_fichier)
+
+    with open(chemin_fichier, 'r+') as fichier:
+        fichier.seek(0)
+        json.dump(dico, fichier, indent=2)
+        fichier.truncate()
+    return
+
+films = []
+films_populaires= []
+genres = []
+
+
 def get_film():
     url = f"https://api.themoviedb.org/3/discover/movie?api_key={api_key_TMDB}&language=fr&page=1"
     liste_films = []
@@ -27,9 +51,8 @@ def get_film():
         if response.status_code == 200:
             films = data.get('results', [])
             if films:
-                with open('films.json', 'w', encoding='utf-8') as fichier:
-                    json.dump(films, fichier, indent=2)
-                    print("ecriture sur films.json")
+                modifier_fichier_json(films,'films.json')
+                print("ecriture sur films.json")
             else:
                 print("Échec de la récupération des films.")
         else:
@@ -39,13 +62,12 @@ def get_film():
 
 
 def genre_film():
-    url = f"https://api.themoviedb.org/3/genre/movie/list?api_key={api_key_TMDB}"
+    url = f"https://api.themoviedb.org/3/genre/movie/list?api_key={api_key_TMDB}&language=fr-FR"
     response = requests.get(url)
     data = response.json()
     if response.status_code == 200:
         genres = data['genres']
-        with open('genres.json', 'w', encoding='utf-8') as fichier:
-            json.dump(genres, fichier, indent=2)
+        modifier_fichier_json(genres,'genres.json')
     else:
         print(f"Erreur {response.status_code}: Impossible de récupérer la liste des genres.")
 
@@ -100,8 +122,7 @@ def get_popular_movie():
         data = reponse.json()
         film_populaire = data.get('results', [])
         if film_populaire:
-            with open('films_populaires.json', 'w', encoding='utf-8') as fichier:
-                json.dump(film_populaire, fichier, indent=2)
+            modifier_fichier_json(film_populaire,'films_populaires.json')
             print("Fichier 'films_populaires.json' créé avec succès.")
         else:
             print("Échec de la récupération des films populaires.")
@@ -110,5 +131,4 @@ def get_popular_movie():
         return None
 
 if __name__ == '__main__':
-    get_film()
-    get_popular_movie()
+    genre_film()

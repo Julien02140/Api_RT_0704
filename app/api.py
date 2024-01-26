@@ -179,6 +179,16 @@ def recherche_film(mot):
     print("liste des films trouvés api :",liste_films)
     return jsonify({"liste_films" : liste_films})
 
+@app.route('/recherche_genre/<int:id>')
+def recherche_genre(id):
+    liste_films = []
+    for film in films:
+        liste_id = film["genre_ids"]
+        for film_id in liste_id:
+            if film_id == id:
+                liste_films.append(film)
+    return jsonify({"message" : liste_films})
+        
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=int("5000"),debug=True)
