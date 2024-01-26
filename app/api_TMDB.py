@@ -36,6 +36,18 @@ films = []
 films_populaires= []
 genres = []
 
+def ajouter_champ_evaluation(films):
+    for film in films:
+        film["evaluation"] = []
+        film["moyenne"] = film['vote_average']
+        film["nb_vote"] = 0
+
+def ajout_champ():
+    films = lire_fichier_json("films.json")
+    nouvelle_evaluation = {"user_id": 123, "vote": 8.5}
+    for film in films:
+        film["evaluation"].append(nouvelle_evaluation)
+    modifier_fichier_json(films,"films.json")
 
 def get_film():
     url = f"https://api.themoviedb.org/3/discover/movie?api_key={api_key_TMDB}&language=fr&page=1"
@@ -51,6 +63,7 @@ def get_film():
         if response.status_code == 200:
             films = data.get('results', [])
             if films:
+                ajouter_champ_evaluation(films)
                 modifier_fichier_json(films,'films.json')
                 print("ecriture sur films.json")
             else:
@@ -115,13 +128,14 @@ def afficher_image():
 def get_popular_movie():
     api_key = "8770fea03d8b0d550c4b50be1656d5cb"
     requete = "https://api.themoviedb.org/3/discover/movie?api_key=8770fea03d8b0d550c4b50be1656d5cb&sort_by=popularity.desc"
-    url = "https://api.themoviedb.org/3/discover/movie?api_key=8770fea03d8b0d550c4b50be1656d5cb&sort_by=popularity.desc"
+    url = "https://api.themoviedb.org/3/discover/movie?api_key=8770fea03d8b0d550c4b50be1656d5cb&sort_by=popularity.desc&language=fr-FR"
 
     reponse = requests.get(url)
     if reponse.status_code == 200:
         data = reponse.json()
         film_populaire = data.get('results', [])
         if film_populaire:
+            ajouter_champ_evaluation(film_populaire)
             modifier_fichier_json(film_populaire,'films_populaires.json')
             print("Fichier 'films_populaires.json' créé avec succès.")
         else:
@@ -131,4 +145,5 @@ def get_popular_movie():
         return None
 
 if __name__ == '__main__':
-    genre_film()
+    get_popular_movie()
+    get_film()

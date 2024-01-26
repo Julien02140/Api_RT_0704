@@ -189,6 +189,71 @@ def recherche_genre(id):
                 liste_films.append(film)
     return jsonify({"message" : liste_films})
         
+"""@app.route('/ajout_note/<int:user_id>/<int:id_film>/<int:note>')
+def ajout_note(user_id,id_film,note):
+    deja_note = False
+    nouvelle_evaluation = {"user_id": user_id, "vote": note}
+    for film in films:
+        if film['id'] == id_film:
+            liste_evaluation = film.get('evaluation')
+            liste_id = liste_evaluation['user_id']
+            liste_note = liste_evaluation['vote']
+            i = 0
+            for id in liste_id:
+                if id == user_id:
+                    deja_note = True
+                    liste_note[i] = note
+                else:
+                    i = i + 1
+            if deja_note == False:
+                film["evaluation"].append(nouvelle_evaluation)       
+
+    modifier_fichier_json(films,"films.json")
+    if deja_note == False:
+        return jsonify({"message" : "Note ajouté"})
+    else:
+        return jsonify({"message" : "Note modifié"})"""
+
+@app.route('/ajout_note/<int:user_id>/<int:id_film>/<int:note>')
+def ajout_note(user_id, id_film, note):
+    deja_note = False
+    nouvelle_evaluation = {"user_id": user_id, "vote": note}
+    for film in films:
+        if film['id'] == id_film:
+            liste_evaluation = film.get('evaluation', [])  # Utilisation de get avec une valeur par défaut vide si 'evaluation' n'existe pas
+            liste_id = [item['user_id'] for item in liste_evaluation]
+            i = 0
+            for idx, user_id_eval in enumerate(liste_id):
+                if user_id_eval == user_id:
+                    deja_note = True
+                    film["evaluation"][idx]["vote"] = note
+                else:
+                    i = i + 1
+            if not deja_note:
+                film['nb_vote'] = film['nb_vote'] + 1
+                film["evaluation"].append(nouvelle_evaluation)
+            calculer_moyenne(film)
+            film_note = film   
+
+    modifier_fichier_json(films, "films.json")
+    
+    if not deja_note:
+        return jsonify({"message": "Note ajoutée", "film_note" : film_note})
+    else:
+        return jsonify({"message": "Note modifiée", "film_note" : film_note})
+
+def calculer_moyenne(film):
+    vote_average = film['vote_average']
+    vote_count_TMDB = film['vote_count']
+    nb_vote = film['nb_vote']
+    evaluation = film.get("evaluation")
+    somme_notes = 0
+    for notes in evaluation:
+        somme_notes = somme_notes + notes['vote']
+    moyenne = ((vote_average * vote_count_TMDB) + somme_notes) / (vote_count_TMDB + nb_vote)
+    film['moyenne'] = round(moyenne,2)
+    return
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=int("5000"),debug=True)
