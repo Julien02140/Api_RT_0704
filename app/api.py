@@ -101,29 +101,51 @@ def verif_user():
     #si on arrive la, alors aucun utilisateur ne correspond
     return jsonify({"message": "NON"})
 
+def verif_donnee(pseudo,email):
+    message_pseudo = "OK"
+    message_mail = "OK"
+    for utilisateur in utilisateurs:
+        if utilisateur['pseudo'] == pseudo:
+            message_pseudo = "pseudo déja utilisé"
+        if utilisateur['email'] == email:
+            message_mail = "mail déja utilisé"              
+    return {"message_pseudo" : message_pseudo, "message_mail": message_mail}
+
+
 @app.route('/register_user',methods=['POST'])
 def register_user():
-    dernier_user = utilisateurs[-1]
-    next_id = dernier_user["id"] + 1
-    donnee  = request.form
-    password = donnee.get("password")
-    password_chiffrer = hashlib.sha256(password.encode('utf-8')).hexdigest()
-    new_user = {
-        "id": next_id,
-        "nom" : donnee.get("lastname"),
-        "prenom": donnee.get("firstname"),
-        "pseudo": donnee.get("pseudo"),
-        "age": donnee.get("age"),
-        "mot_de_passe": password_chiffrer,
-        "email": donnee.get("email")
-    }
-    utilisateurs.append(new_user) #ajoute au dico user le nouvel user
+    donnee = request.form
+    #verification du pseudo, on regarde si le nom n'est pas deja pris
+    pseudo = donnee.get("pseudo")
+    email = donnee.get("email")
+    print("PSEUDO UTILISATEUR API",pseudo)
+    verification = verif_donnee(pseudo,email)
+    #si le bool est false, le pseudo n'estpas dans la base de donnée
+    #on peut creer l'utilisateur
+    if verification["message_pseudo"] == "OK" and  verification["message_mail"] == "OK":
+        dernier_user = utilisateurs[-1]
+        next_id = dernier_user["id"] + 1
+        donnee  = request.form
+        password = donnee.get("password")
+        password_chiffrer = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        new_user = {
+            "id": next_id,
+            "nom" : donnee.get("lastname"),
+            "prenom": donnee.get("firstname"),
+            "pseudo": donnee.get("pseudo"),
+            "age": donnee.get("age"),
+            "mot_de_passe": password_chiffrer,
+            "email": donnee.get("email")
+        }
+        utilisateurs.append(new_user) #ajoute au dico user le nouvel user
 
-    modifier_fichier_json(utilisateurs,"utilisateur.json")
+        modifier_fichier_json(utilisateurs,"utilisateur.json")
 
-    creer_videotheque(next_id)
-    
-    return jsonify({"message":"Utilisateur ajouté"})
+        creer_videotheque(next_id)
+        
+        return jsonify({"message":"Utilisateur ajouté"})
+    else:
+        return jsonify({"message" : "problème","message_pseudo" : verification['message_pseudo'],"message_mail": verification['message_mail']},)
 
 @app.route('/films_populaires')
 def get_films_populaires():
@@ -262,6 +284,24 @@ def calculer_moyenne(film):
     moyenne = ((vote_average * vote_count_TMDB) + somme_notes) / (vote_count_TMDB + nb_vote)
     film['moyenne'] = round(moyenne,2)
     return
+
+@app.route('/admin_liste_user')
+def admin_liste_user():
+    liste_user = []
+    for utilisateur in utilisateurs:
+        liste_user.append(utilisateur)
+    return jsonify(liste_user)
+
+@app.route('/supprimer_utilisateur/<int:user_id>')
+def supprimer_utilisateur(user_id):
+    liste_user = utilisateurs
+    for utilisateur in utilisateurs:
+        if utilisateur['id'] == user_id:
+            liste_user.remove(utilisateur)
+
+    modifier_fichier_json(utilisateurs,"utilisateur.json")
+    return jsonify({"message" : "Utilisateur supprimé"})
+
 
 
 if __name__ == '__main__':
