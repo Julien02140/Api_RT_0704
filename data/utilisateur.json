@@ -1,5 +1,14 @@
 [
   {
+    "id": 0,
+    "nom": "Boutreaux",
+    "prenom": "julien",
+    "pseudo": "admin",
+    "age": 22,
+    "mot_de_passe": "3da4b2bfc46ffad3fd29cc66b8aa41b38a53430e85a1b71ac7e4159d1526dac8",
+    "email": "julien.boutreaux@orange.fr"
+  },
+  {
     "id": 1,
     "nom": "Boutreaux",
     "prenom": "julien",
@@ -34,5 +43,23 @@
     "age": "29",
     "mot_de_passe": "f43cd09d74d9bdca21d03e81dd4c7d6a314f53b903d86ee8f4e92ef4ab7b6891",
     "email": "luc.dupont@orange.fr"
+  },
+  {
+    "id": 5,
+    "nom": "Wit",
+    "prenom": "Chey",
+    "pseudo": "Chevy",
+    "age": "19",
+    "mot_de_passe": "5b2b967eb1d545bee33c42c533100143d7ed36b2790cc6234fd4279dc998d0a4",
+    "email": "chevy.wit@orange.fr"
+  },
+  {
+    "id": 6,
+    "nom": "court",
+    "prenom": "anthony",
+    "pseudo": "anthony",
+    "age": "25",
+    "mot_de_passe": "c66f87a230653aae97628fcdccb60447b634e27c91568cad774b6d70dc4dc7b1",
+    "email": "anthony.court@orange.fr"
   }
 ]

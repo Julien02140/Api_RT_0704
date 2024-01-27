@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 videotheque = []
 films = []
-films_populaires= []
+#films_populaires= []
 genres = []
 utilisateurs = []
 
@@ -31,7 +31,7 @@ def modifier_fichier_json(dico,nom_fichier):
 
 videotheque = lire_fichier_json('videotheque.json')
 films = lire_fichier_json('films.json')
-films_populaires = lire_fichier_json('films_populaires.json')
+#films_populaires = lire_fichier_json('films_populaires.json')
 genres = lire_fichier_json('genres.json')
 utilisateurs = lire_fichier_json('utilisateur.json')
 
@@ -46,7 +46,14 @@ def creer_videotheque(user_id):
     videotheque.append(nouv_video)
 
     modifier_fichier_json(videotheque,"videotheque.json")
-    
+
+
+@app.route('/get_user/<int:user_id>')
+def get_user(user_id):
+    for utilisateur in utilisateurs:
+        if utilisateur['id'] == user_id:
+            return jsonify(utilisateur)
+
 
 @app.route('/recherche/<string:chaine>')
 def recherche(chaine):
@@ -61,17 +68,18 @@ def chercher_videotheque(user_id):
             return video
     return "erreur, ne trouve pas la videotheque du user"  
 
-@app.route('/ma_videotheque/<int:id>') #id de l'utilisateur
+@app.route('/videotheque/<int:id>') #id de l'utilisateur
 def ma_videotheque(id):
+    liste_films = []
     print("dans la fonction videotheque ")
     for video in videotheque:
         id_video = video.get("id_utilisateur")
-        print("id video :",id_video)
+        print("id video videotheque :",id_video)
         if id_video == id:
             liste_films = video.get("liste_films")
             print(liste_films)
             return jsonify({"liste_films": liste_films})
-    return "pas trouve id utilisateur"
+    return jsonify({"liste_films": liste_films})
     
 #cette route vérifie si le user est dans la base de donnée
 @app.route('/verif_user', methods=['POST'])
@@ -119,6 +127,7 @@ def register_user():
 
 @app.route('/films_populaires')
 def get_films_populaires():
+    films_populaires = films[:20]
     return jsonify(films_populaires)
 
 @app.route('/trouver_film/<int:film_id>')
@@ -129,10 +138,10 @@ def trouver_film(film_id): #prends l'id du film en paramètre, retrouve le film 
         if film['id'] == film_id:
             print(film["title"])
             return jsonify(film)
-    for film in films_populaires:
+    """for film in films_populaires:
         if film['id'] == film_id:
             print(film["title"])
-            return jsonify(film)
+            return jsonify(film)"""
         
     print("film pas trouve")
     return "erreur film non trouve"
@@ -233,7 +242,7 @@ def ajout_note(user_id, id_film, note):
                 film['nb_vote'] = film['nb_vote'] + 1
                 film["evaluation"].append(nouvelle_evaluation)
             calculer_moyenne(film)
-            film_note = film   
+            film_note = film
 
     modifier_fichier_json(films, "films.json")
     

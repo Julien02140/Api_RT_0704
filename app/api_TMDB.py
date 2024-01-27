@@ -3,6 +3,7 @@ import json
 import random
 import requests
 import os
+import hashlib
 #installer request pour la method post
 #post est utilisé pour modifier ou ajouter à la base de donnée
 #alors que get est utilisé pour lire, extraire des données
@@ -144,6 +145,10 @@ def get_popular_movie():
         print("Erreur lors de la requête")
         return None
 
+def hash_admin(admin):
+    admin = hashlib.sha256(admin.encode('utf-8')).hexdigest()
+    print(admin)
 if __name__ == '__main__':
     get_popular_movie()
     get_film()
+    hash_admin("admin02140")
