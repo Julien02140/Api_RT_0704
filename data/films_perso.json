@@ -1,5 +1,6 @@
 [
   {
+    "id" : 1,
     "id_user": 4,
     "nom": "titanic2",
     "date": "2013",
@@ -7,6 +8,7 @@
     "poster_path": "/static/image/titanic2_2013.jpg"
   },
   {
+    "id" : 2,
     "id_user": 4,
     "nom": "titanic",
     "date": "2012",

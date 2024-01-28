@@ -5,8 +5,6 @@ import requests
 import os
 import hashlib
 #installer request pour la method post
-#post est utilisé pour modifier ou ajouter à la base de donnée
-#alors que get est utilisé pour lire, extraire des données
 
 app_TMDB = Flask(__name__)
 api_key_TMDB = "8770fea03d8b0d550c4b50be1656d5cb"
