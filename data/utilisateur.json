@@ -9,15 +9,6 @@
     "email": "julien.boutreaux@orange.fr"
   },
   {
-    "id": 1,
-    "nom": "Boutreaux",
-    "prenom": "julien",
-    "pseudo": "juju",
-    "age": 22,
-    "mot_de_passe": "juju02140",
-    "email": "julien.boutreaux@orange.fr"
-  },
-  {
     "id": 4,
     "nom": "Dupont",
     "prenom": "Luc",

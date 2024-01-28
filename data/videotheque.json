@@ -11,35 +11,9 @@
     "liste_films": []
   },
   {
-    "id_utilisateur": 3,
-    "liste_films": []
-  },
-  {
     "id_utilisateur": 4,
-    "liste_films": []
-  },
-  {
-    "id_utilisateur": 4,
-    "liste_films": []
-  },
-  {
-    "id_utilisateur": 5,
-    "liste_films": []
-  },
-  {
-    "id_utilisateur": 6,
-    "liste_films": []
-  },
-  {
-    "id_utilisateur": 7,
-    "liste_films": []
-  },
-  {
-    "id_utilisateur": 8,
-    "liste_films": []
-  },
-  {
-    "id_utilisateur": 7,
-    "liste_films": []
+    "liste_films": [
+      840430
+    ]
   }
 ]

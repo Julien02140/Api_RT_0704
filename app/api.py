@@ -12,6 +12,7 @@ films = []
 #films_populaires= []
 genres = []
 utilisateurs = []
+films_perso = []
 
 def lire_fichier_json(nom_fichier):
     chemin_fichier = os.path.join(os.path.dirname(__file__), '..', 'data', nom_fichier)
@@ -35,18 +36,29 @@ films = lire_fichier_json('films.json')
 #films_populaires = lire_fichier_json('films_populaires.json')
 genres = lire_fichier_json('genres.json')
 utilisateurs = lire_fichier_json('utilisateur.json')
+films_perso = lire_fichier_json("films_perso.json")
 
 
 def creer_videotheque(user_id):
     nouv_video = {
 
         "id_utilisateur": user_id,
-        "liste_films": []
+        "liste_films": [],
+        "liste_films_perso": []
     }
     
     videotheque.append(nouv_video)
 
     modifier_fichier_json(videotheque,"videotheque.json")
+
+def supprimer_videotheque(user_id):
+    video_final = videotheque.copy()
+    for video in videotheque:
+        if video["id_utilisateur"] == user_id:
+            video_final.remove(video)
+    
+    modifier_fichier_json(video_final,"videotheque.json")
+    videotheque[:] = video_final
 
 
 @app.route('/get_user/<int:user_id>')
@@ -299,7 +311,8 @@ def supprimer_utilisateur(user_id):
     for utilisateur in utilisateurs:
         if utilisateur['id'] == user_id:
             liste_user.remove(utilisateur)
-
+    
+    supprimer_videotheque(user_id)
     modifier_fichier_json(utilisateurs,"utilisateur.json")
     return jsonify({"message" : "Utilisateur supprimé"})
 
@@ -365,6 +378,41 @@ def ajout_film_TMDB():
     films.append(new_film)
     modifier_fichier_json(films,"films.json")
     return jsonify({"message" : "OK"})
+
+@app.route("/ajout_film_perso",methods=['POST'])
+def ajout_film_perso():
+    id_user = 5
+    date = "2012"
+    synopsis = "ok"
+    image_path = "/mmm"
+    nom = "test"
+    data = request.get_json()
+    if data :
+        id_user = data.get('id_user')
+        nom = data.get('nom')
+        date = data.get('date')
+        synopsis = data.get('synopsis')
+        image_path = data.get('poster_path')
+
+    nouveau_film = {
+        'id_user' : id_user,
+        'nom': nom,
+        'date': date,
+        'synopsis': synopsis,
+        'poster_path': image_path,
+    }
+
+    films_perso.append(nouveau_film)
+    modifier_fichier_json(films_perso,"films_perso.json")
+    return jsonify({"message" : "OK"})
+
+@app.route("/liste_film_perso/<int:user_id>")
+def liste_film_perso(user_id):
+    liste_films = []
+    for film in films_perso:
+        if film['id_user'] == user_id:
+            liste_films.append(film)
+    return jsonify(liste_films)
 
 
 if __name__ == '__main__':
