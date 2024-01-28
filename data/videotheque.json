@@ -1,7 +1,10 @@
 [
   {
     "id_utilisateur": 0,
-    "liste_films": []
+    "liste_films": [
+      840430,
+      299536
+    ]
   },
   {
     "id_utilisateur": 1,
@@ -25,6 +28,18 @@
   },
   {
     "id_utilisateur": 6,
+    "liste_films": []
+  },
+  {
+    "id_utilisateur": 7,
+    "liste_films": []
+  },
+  {
+    "id_utilisateur": 8,
+    "liste_films": []
+  },
+  {
+    "id_utilisateur": 7,
     "liste_films": []
   }
 ]

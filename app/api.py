@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request,g
 import json
 import hashlib
 import os
+import requests
 #installer request pour la method post
 
 app = Flask(__name__)
@@ -302,6 +303,68 @@ def supprimer_utilisateur(user_id):
     modifier_fichier_json(utilisateurs,"utilisateur.json")
     return jsonify({"message" : "Utilisateur supprimé"})
 
+@app.route('/recherche_film_TMDB/<string:mot>')
+def recherche_film_TMDB(mot):
+    print("DANS LA FONCTION RECHERCHE_TMDB")
+    api_key_TMDB = "8770fea03d8b0d550c4b50be1656d5cb"
+    url = "https://api.themoviedb.org/3/search/movie"
+    liste_films = []
+
+    params = {
+    'api_key': api_key_TMDB,
+    'query': mot,
+    'language': 'fr-FR',
+    }
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        data = response.json()
+        liste_films = data.get('results', [])
+        for film in liste_films:
+            print('DANS LA BOUCLE RECHERCHE TMDB')
+            print(film['title'])
+
+        liste_final = supprimer_doublon(liste_films)
+        return jsonify(liste_final)
+    
+    else:
+        print("erreur")
+        return jsonify({"message" : "Problème connexion"})
+    
+#supprime les filpms qui sont deja dans la base de donnée
+#de la liste donnée par recherche_film_TMDB
+def supprimer_doublon(liste_films):
+    liste_final = liste_films.copy()
+    for film_liste in liste_films:
+        for film in films:
+            if film_liste['id'] == film['id']:
+                liste_final.remove(film_liste)
+    return liste_final
+
+@app.route("/ajouter_film_TMDB", methods = ['POST'])
+def ajout_film_TMDB():
+    data = request.json
+    new_film = {
+        "adult": data.get("adult"),
+        "backdrop_path": data["backdrop_path"],
+        "genre_ids": data.get("genre_ids", []),
+        "id": data["id"],
+        "original_language": data["original_language"],
+        "original_title": data["original_title"],
+        "overview": data["overview"],
+        "popularity": data["popularity"],
+        "poster_path": data["poster_path"],
+        "release_date": data["release_date"],
+        "title": data["title"],
+        "video": data["video"],
+        "vote_average": data["vote_average"],
+        "vote_count": data["vote_count"],
+        "evaluation": [],
+        "moyenne": data["vote_count"],
+        "nb_vote": 0
+    }
+    films.append(new_film)
+    modifier_fichier_json(films,"films.json")
+    return jsonify({"message" : "OK"})
 
 
 if __name__ == '__main__':

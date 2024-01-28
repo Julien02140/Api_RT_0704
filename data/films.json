@@ -44,10 +44,14 @@
       {
         "user_id": 4,
         "vote": 4
+      },
+      {
+        "user_id": 0,
+        "vote": 2
       }
     ],
     "moyenne": 8.3,
-    "nb_vote": 1
+    "nb_vote": 2
   },
   {
     "adult": false,

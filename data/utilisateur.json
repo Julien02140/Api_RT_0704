@@ -18,24 +18,6 @@
     "email": "julien.boutreaux@orange.fr"
   },
   {
-    "id": 2,
-    "nom": "Boutreaux",
-    "prenom": "alexandre",
-    "pseudo": "Alex",
-    "age": 18,
-    "mot_de_passe": "alex023140",
-    "email": "alexandre.boutreaux@orange.fr"
-  },
-  {
-    "id": 3,
-    "nom": "Mauriaucourt",
-    "prenom": "Adrien",
-    "pseudo": "BBmetal",
-    "age": "24",
-    "mot_de_passe": "adrien02140",
-    "email": "adrien.mauriaucourt@orange.fr"
-  },
-  {
     "id": 4,
     "nom": "Dupont",
     "prenom": "Luc",
@@ -43,23 +25,5 @@
     "age": "29",
     "mot_de_passe": "f43cd09d74d9bdca21d03e81dd4c7d6a314f53b903d86ee8f4e92ef4ab7b6891",
     "email": "luc.dupont@orange.fr"
-  },
-  {
-    "id": 5,
-    "nom": "Wit",
-    "prenom": "Chey",
-    "pseudo": "Chevy",
-    "age": "19",
-    "mot_de_passe": "5b2b967eb1d545bee33c42c533100143d7ed36b2790cc6234fd4279dc998d0a4",
-    "email": "chevy.wit@orange.fr"
-  },
-  {
-    "id": 6,
-    "nom": "court",
-    "prenom": "anthony",
-    "pseudo": "anthony",
-    "age": "25",
-    "mot_de_passe": "c66f87a230653aae97628fcdccb60447b634e27c91568cad774b6d70dc4dc7b1",
-    "email": "anthony.court@orange.fr"
   }
 ]
