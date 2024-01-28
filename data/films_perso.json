@@ -1,10 +1,16 @@
 [
   {
-    "id": 0,
     "id_user": 4,
     "nom": "titanic2",
     "date": "2013",
     "synopsis": "bateau coule deux fois",
     "poster_path": "/static/image/titanic2_2013.jpg"
+  },
+  {
+    "id_user": 2,
+    "nom": "titanic",
+    "date": "1997",
+    "synopsis": "bateau coule",
+    "poster_path": "/static/image/titanic_1997.jpg"
   }
 ]

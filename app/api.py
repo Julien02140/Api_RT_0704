@@ -381,11 +381,9 @@ def ajout_film_TMDB():
 
 @app.route("/ajout_film_perso",methods=['POST'])
 def ajout_film_perso():
-    dernier_film_perso = films_perso[-1]
-    next_id = dernier_film_perso["id"] + 1
+    films_perso = lire_fichier_json("films_perso.json")
     data = request.get_json()
     if data :
-        id = next_id
         id_user = data.get('id_user')
         nom = data.get('nom')
         date = data.get('date')
@@ -393,7 +391,6 @@ def ajout_film_perso():
         image_path = data.get('poster_path')
 
     nouveau_film = {
-        'id': next_id,
         'id_user' : id_user,
         'nom': nom,
         'date': date,
@@ -408,7 +405,7 @@ def ajout_film_perso():
 
 @app.route("/liste_film_perso/<int:user_id>")
 def liste_film_perso(user_id):
-    films_perso = lire_fichier_json("films_perso")
+    films_perso = lire_fichier_json("films_perso.json")
     liste_films = []
     for film in films_perso:
         if film['id_user'] == user_id:
@@ -419,7 +416,7 @@ def liste_film_perso(user_id):
 def supprimer_film_perso(film_id):
     liste_final = films_perso.copy()
     for film in films_perso:
-        if film['id'] == film_id:
+        if film['id'] == film_id: 
             liste_final.remove(film)
     
     modifier_fichier_json(liste_final,"films_perso.json")
