@@ -11,9 +11,8 @@
     "liste_films": []
   },
   {
-    "id_utilisateur": 4,
-    "liste_films": [
-      840430
-    ]
+    "id_utilisateur": 5,
+    "liste_films": [],
+    "liste_films_perso": []
   }
 ]

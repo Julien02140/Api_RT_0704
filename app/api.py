@@ -393,6 +393,7 @@ def ajout_film_perso():
         image_path = data.get('poster_path')
 
     nouveau_film = {
+        'id': next_id,
         'id_user' : id_user,
         'nom': nom,
         'date': date,
@@ -402,10 +403,12 @@ def ajout_film_perso():
 
     films_perso.append(nouveau_film)
     modifier_fichier_json(films_perso,"films_perso.json")
+    films_perso = lire_fichier_json("films_perso.json")
     return jsonify({"message" : "OK"})
 
 @app.route("/liste_film_perso/<int:user_id>")
 def liste_film_perso(user_id):
+    films_perso = lire_fichier_json("films_perso")
     liste_films = []
     for film in films_perso:
         if film['id_user'] == user_id:
